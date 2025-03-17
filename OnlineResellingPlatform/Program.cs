@@ -25,13 +25,9 @@ public interface IOrderAction
 
 public interface ISearchAction
 {
-    void Execute(List<Product> products);
-}
-
-public interface ISearch
-{
     void Search(List<Product> products);
 }
+
 
 
 // Base classes
@@ -391,7 +387,7 @@ public class SellerFeedbackService
 
 
 // OCP - Open for extension, Closed for modification
-public sealed class SearchByName : ISearch
+public sealed class SearchByName : ISearchAction
 {
     public void Search(List<Product> products)
     {
@@ -416,7 +412,7 @@ public sealed class SearchByName : ISearch
     }
 }
 
-public sealed class SearchByPrice : ISearch
+public sealed class SearchByPrice : ISearchAction
 {
     public void Search(List<Product> products)
     {
@@ -447,7 +443,7 @@ public sealed class SearchByPrice : ISearch
     }
 }
 
-public sealed class SearchByModel : ISearch
+public sealed class SearchByModel : ISearchAction
 {
     public void Search(List<Product> products)
     {
@@ -471,7 +467,7 @@ public sealed class SearchByModel : ISearch
     }
 }
 
-public sealed class SearchByCategory : ISearch
+public sealed class SearchByCategory : ISearchAction
 {
     public void Search(List<Product> products)
     {
@@ -523,19 +519,19 @@ public class SearchProduct : IBuyerAction
             switch (choice)
             {
                 case "1":
-                    ISearch obj1 = new SearchByName();
+                    ISearchAction obj1 = new SearchByName();
                     obj1.Search(products);
                     break;
                 case "2":
-                    ISearch obj2 = new SearchByPrice();
+                    ISearchAction obj2 = new SearchByPrice();
                     obj2.Search(products);
                     break;
                 case "3":
-                    ISearch obj3 = new SearchByModel();
+                    ISearchAction obj3 = new SearchByModel();
                     obj3.Search(products);
                     break;
                 case "4":
-                    ISearch obj4 = new SearchByCategory();
+                    ISearchAction obj4 = new SearchByCategory();
                     obj4.Search(products);
                     break;
                 default:
@@ -981,7 +977,7 @@ public class SellerMenu
                 string planChoice = Console.ReadLine();
                 _subscriptionService.ProcessSubscription(_seller, planChoice);
             }
-            else if (choice == "6")
+            else if (choice == "7")
                 break;
             else
                 Console.WriteLine("Invalid choice!");
