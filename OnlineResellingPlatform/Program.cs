@@ -550,7 +550,6 @@ public class SearchProduct : IBuyerAction
 
 // ORDER CLASSES
 
-
 public class PlaceOrder : IOrderAction
 {
     private readonly List<Order> _orders;
@@ -779,6 +778,28 @@ public class AdminMenu : IAdminAction
     }
 }
 
+
+// View products
+public class ViewProducts : IBuyerAction
+{
+    private readonly List<Product> _products;
+
+    public ViewProducts(List<Product> products)
+    {
+        this._products = products;
+    }
+
+    public void BExecute()
+    {
+        Console.WriteLine("\nAvailable Products:");
+        foreach (var product in _products)
+        {
+            Console.WriteLine($"ID: {product.Id}, Name: {product.Name}, Price: Rs.{product.DiscountedPrice}, Quantity: {product.Quantity}, Sold Out: {product.IsSoldOut}");
+        }
+    }
+
+}
+
 // Add Product
 public class AddProduct : ISellerAction
 {
@@ -811,25 +832,6 @@ public class AddProduct : ISellerAction
 
         _products.Add(new Product(name, model, category, originalPrice, discountedPrice, description, SellerUsername, quantity));
         Console.WriteLine("Product added successfully!");
-    }
-}
-
-public class ViewProducts : IBuyerAction
-{
-    private readonly List<Product> _products;
-
-    public ViewProducts(List<Product> products)
-    {
-        this._products = products;
-    }
-
-    public void BExecute()
-    {
-        Console.WriteLine("\nAvailable Products:");
-        foreach (var product in _products)
-        {
-            Console.WriteLine($"ID: {product.Id}, Name: {product.Name}, Price: rs {product.DiscountedPrice}, Quantity: {product.Quantity}, Sold Out: {product.IsSoldOut}");
-        }
     }
 }
 
@@ -929,6 +931,7 @@ public class UserMenu
 
 public class SellerMenu
 {
+    private readonly ViewProducts _viewProducts;
     private readonly AddProduct _addProduct;
     private readonly UpdateProduct _updateProduct;
     private readonly DeleteProduct _deleteProduct;
@@ -936,8 +939,9 @@ public class SellerMenu
     private readonly SubscriptionService _subscriptionService;
     private readonly User _seller;
 
-    public SellerMenu(AddProduct addProduct, UpdateProduct updateProduct, DeleteProduct deleteProduct, SellerFeedbackService sellerFeedbackService, SubscriptionService subscriptionService, User seller)
+    public SellerMenu(ViewProducts viewProducts, AddProduct addProduct, UpdateProduct updateProduct, DeleteProduct deleteProduct, SellerFeedbackService sellerFeedbackService, SubscriptionService subscriptionService, User seller)
     {
+        this._viewProducts = viewProducts;
         this._addProduct = addProduct;
         this._updateProduct = updateProduct;
         this._deleteProduct = deleteProduct;
@@ -951,17 +955,19 @@ public class SellerMenu
         while (true)
         {
             Console.WriteLine("\nSeller Menu");
-            Console.WriteLine("1. Add Product\n2. Update Product\n3. Delete Product\n4. Leave Feedback\n5. Subscribe\n6. Exit");
+            Console.WriteLine("1. View Products\n2. Add Product\n3. Update Product\n4. Delete Product\n5. Leave Feedback\n6. Subscribe\n7. Exit");
             Console.Write("Enter choice: ");
             string choice = Console.ReadLine();
 
             if (choice == "1")
-                _addProduct.SExecute();
+                _viewProducts.BExecute();
             else if (choice == "2")
-                _updateProduct.SExecute();
+                _addProduct.SExecute();
             else if (choice == "3")
-                _deleteProduct.SExecute();
+                _updateProduct.SExecute();
             else if (choice == "4")
+                _deleteProduct.SExecute();
+            else if (choice == "5")
             {
                 Console.Write("Enter Feedback: ");
                 string feedback = Console.ReadLine();
@@ -969,7 +975,7 @@ public class SellerMenu
                 int rating = Convert.ToInt32(Console.ReadLine());
                 _sellerFeedbackService.AddFeedback(_addProduct.SellerUsername, feedback, rating);
             }
-            else if (choice == "5")
+            else if (choice == "6")
             {
                 Console.Write("Choose Subscription (1: Basic, 2: Premium): ");
                 string planChoice = Console.ReadLine();
@@ -1075,7 +1081,7 @@ public class Program
 
         while (true)
         {
-            Console.WriteLine("Welcome to the Online Reselling Platform");
+            Console.WriteLine("\nWelcome to the Online Reselling Platform");
             Console.WriteLine("1. Register\n2. Login\n3. Exit\n");
             Console.Write("Enter choice: ");
             string choice = Console.ReadLine();
@@ -1109,6 +1115,7 @@ public class Program
                         if (user.Role == "1") // Seller
                         {
                             var sellerMenu = new SellerMenu(
+                                new ViewProducts(products),
                                 new AddProduct(products, user.Username),
                                 new UpdateProduct(products),
                                 new DeleteProduct(products),
