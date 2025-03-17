@@ -28,7 +28,7 @@ public interface ISearchAction
     void Execute(List<Product> products);
 }
 
-public interface ISearchStrategy
+public interface ISearch
 {
     void Search(List<Product> products);
 }
@@ -391,7 +391,7 @@ public class SellerFeedbackService
 
 
 // OCP - Open for extension, Closed for modification
-public sealed class SearchByName : ISearchStrategy
+public sealed class SearchByName : ISearch
 {
     public void Search(List<Product> products)
     {
@@ -416,7 +416,7 @@ public sealed class SearchByName : ISearchStrategy
     }
 }
 
-public sealed class SearchByPrice : ISearchStrategy
+public sealed class SearchByPrice : ISearch
 {
     public void Search(List<Product> products)
     {
@@ -447,7 +447,7 @@ public sealed class SearchByPrice : ISearchStrategy
     }
 }
 
-public sealed class SearchByModel : ISearchStrategy
+public sealed class SearchByModel : ISearch
 {
     public void Search(List<Product> products)
     {
@@ -471,7 +471,7 @@ public sealed class SearchByModel : ISearchStrategy
     }
 }
 
-public sealed class SearchByCategory : ISearchStrategy
+public sealed class SearchByCategory : ISearch
 {
     public void Search(List<Product> products)
     {
@@ -523,19 +523,19 @@ public class SearchProduct : IBuyerAction
             switch (choice)
             {
                 case "1":
-                    ISearchStrategy obj1 = new SearchByName();
+                    ISearch obj1 = new SearchByName();
                     obj1.Search(products);
                     break;
                 case "2":
-                    ISearchStrategy obj2 = new SearchByPrice();
+                    ISearch obj2 = new SearchByPrice();
                     obj2.Search(products);
                     break;
                 case "3":
-                    ISearchStrategy obj3 = new SearchByModel();
+                    ISearch obj3 = new SearchByModel();
                     obj3.Search(products);
                     break;
                 case "4":
-                    ISearchStrategy obj4 = new SearchByCategory();
+                    ISearch obj4 = new SearchByCategory();
                     obj4.Search(products);
                     break;
                 default:
