@@ -1,0 +1,15 @@
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\bin\Debug\net8.0\OnlineResellingPlatform.exe
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\bin\Debug\net8.0\OnlineResellingPlatform.deps.json
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\bin\Debug\net8.0\OnlineResellingPlatform.runtimeconfig.json
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\bin\Debug\net8.0\OnlineResellingPlatform.dll
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\bin\Debug\net8.0\OnlineResellingPlatform.pdb
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.AssemblyInfoInputs.cache
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.AssemblyInfo.cs
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.csproj.CoreCompileInputs.cache
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.sourcelink.json
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.dll
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\refint\OnlineResellingPlatform.dll
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.pdb
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\OnlineResellingPlatform.genruntimeconfig.cache
+C:\Users\Tharaniha\source\repos\OnlineResellingPlatform\OnlineResellingPlatform\obj\Debug\net8.0\ref\OnlineResellingPlatform.dll
